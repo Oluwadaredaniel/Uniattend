@@ -2,7 +2,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useAuthStore } from './store/useAuthStore';
-import { useSocket } from './hooks/useSocket';
+import { useSocket } from './context/SocketProvider';
 
 // Layouts & UI
 import Navbar from './components/Navbar';

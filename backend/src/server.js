@@ -8,7 +8,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 
 import connectDB from './config/db.js';
-import { PORT } from './config/env.js';
+import { PORT, CLIENT_URL } from './config/env.js'; // 👈 IMPORT CLIENT_URL
 import initSocket from './socket.js';
 
 // --- Route Imports ---
@@ -28,7 +28,7 @@ const server = http.createServer(app);
 // Initialize Socket.io
 const io = new Server(server, {
     cors: {
-        origin: '*', // IMPORTANT: Change this to your frontend URL in production
+        origin: CLIENT_URL, // 👈 USING ENV VARIABLE
         methods: ['GET', 'POST', 'PUT'],
     },
 });
@@ -36,7 +36,7 @@ const io = new Server(server, {
 // Middleware
 app.use(helmet());
 app.use(cors({
-    origin: '*', // IMPORTANT: Change this to your frontend URL in production
+    origin: CLIENT_URL, // 👈 USING ENV VARIABLE
     credentials: true,
 }));
 app.use(morgan('dev'));
